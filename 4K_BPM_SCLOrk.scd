@@ -79,7 +79,7 @@ MIDIdef.cc(\midifXgain, { | val | ~fX.set(\gain, val/127); },             63 ); 
 
 v = Main.elapsedTime.ceil;
 t = TempoClock(1, 0, v);
-t.schedAbs(0, {
+t.play({
 	~fX	        = (instrument: \fX).play;
 	~kindaBass  = (instrument: \kindaBass).play;
 	~wierdBleep = (instrument: \wierdBleep).play;
