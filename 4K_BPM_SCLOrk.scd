@@ -25,6 +25,11 @@
            released under GNU GPL. feel free to copy, reuse, remix,
            provided that you share under same conditions: GNU GPL.
 
+Bruno's note: I created 14 separated "player" files, with generators and MIDI binding choices already made for up to 14 players. SCLOrk players will run their unique file directly from command line: sclang player-01 etc.
+That's why MIDI controls are commented out in this file.
+EFFECTS MIDI bindings were kept in this file, as they are the same for all players.
+In Spring 2015, SCLOrk used nanoKONTROL2 interfaces to play the piece.
+
 ***************************************************************************** */
 
 
@@ -33,6 +38,8 @@
    *************
 
 GENERATORS' GAINS:                                                        midi        */
+
+/*
 MIDIdef.cc(\midilfTri,      { | val | ~lfTri.set(\gain, val/127); },       0 );
 MIDIdef.cc(\midikindaBass,  { | val | ~kindaBass.set(\gain, val/127); },   1 );
 MIDIdef.cc(\midiwierdBleep, { | val | ~wierdBleep.set(\gain, val/127); },  2 );
@@ -57,19 +64,19 @@ MIDIdef.cc(\midilowCub2,    { | val | ~lowCub2.set(\gain, val/127); },    19 );
 
 MIDIdef.cc(\midiwhite5,     { | val | ~white5.set(\gain, val/127); },     20 );
 MIDIdef.cc(\midibrown1,     { | val | ~brown1.set(\gain, val/127); },     21 );
-
+*/
 // ------------------------------------------------------------------------------- //
 
-// effects and master out midi control
-MIDIdef.cc(\midifXcombWet, 	{ | val | ~fX.set(\combWet, val/300); },      60 ); // comb filter WET
+// effects and master out midi control for nanoKONTROL2
+MIDIdef.cc(\midifXcombWet, 	{ | val | ~fX.set(\combWet, val/300); },      20 ); // comb filter WET
 
 MIDIdef.cc(\midifXlpfCutoff, { | val |
 	var cutoff; cutoff = (exp(val/12)+50).asInt.min(20000);
-	~fX.set(\lpfCutoff, cutoff); },                                       61 ); // LPF cutoff freq
+	~fX.set(\lpfCutoff, cutoff); },                                       21 ); // LPF cutoff freq
 
-MIDIdef.cc(\midifXreverbWet, { | val | ~fX.set(\reverbWet, val/300); },   62 ); // Reverb WET
+MIDIdef.cc(\midifXreverbWet, { | val | ~fX.set(\reverbWet, val/300); },   22 ); // Reverb WET
 
-MIDIdef.cc(\midifXgain, { | val | ~fX.set(\gain, val/127); },             63 ); // MASTER OUT
+MIDIdef.cc(\midifXgain, { | val | ~fX.set(\gain, val/127); },             23 ); // MASTER OUT
 
 //s.makeGui;
 
