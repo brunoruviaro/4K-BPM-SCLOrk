@@ -14,7 +14,7 @@ s.waitForBoot({
 		MIDIdef.cc(\midiwhite2,     { | val | ~white2.set(\gain, val/127); },     2 );
 
 		// last fader for sync test only
-		MIDIdef.cc(\midiwhite2,     { | val | ~white2.set(\gain, val/127); },     7 );
+		MIDIdef.cc(\midiwhite2test,     { | val | ~white2.set(\gain, val/127); },     7 );
 
 		// effects assigned to knobs (same for all players, defined on main file)
 		3.wait;
